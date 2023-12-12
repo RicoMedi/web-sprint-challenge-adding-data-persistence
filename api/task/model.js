@@ -21,6 +21,17 @@ async function get(){
           return result
 }
 
+async function insert(task){
+    const [task_id] = await db("tasks").insert(task)
+    const newTask = await db("tasks").where({task_id}).first()
+    if (!newTask) {
+        return null; 
+      }
+      newTask.task_completed = newTask.task_completed ? true : false;
+  return newTask
+}
+
 module.exports ={
-    get
+    get,
+    insert
 }
