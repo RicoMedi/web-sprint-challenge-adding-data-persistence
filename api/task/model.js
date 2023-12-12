@@ -2,7 +2,7 @@
 const db = require('../../data/dbConfig')
 
 async function get(){
-    const rows = await db('task as t')
+    const rows = await db('tasks as t')
     .leftJoin('projects as p', 't.project_id', 'p.project_id')
     .select(
         'task_id',
